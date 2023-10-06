@@ -1,0 +1,21 @@
+logging:
+  level:
+    org:
+      springframework: INFO
+    com:
+      sap:
+        olingo:
+          jpa: TRACE      
+odata:
+  jpa:
+    punit_name: PetCareBEApp
+    root_packages: vr.apps.petcare
+server:
+  port: 8080
+spring:
+  liquibase:
+    change-log: classpath:db/liquibase_changelog.xml
+    enabled: true
+  servlet:
+    multipart:
+      enabled: false

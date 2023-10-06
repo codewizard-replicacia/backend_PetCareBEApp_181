@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="schemaName" value="petcare"></property>
+    <property name="author=" value="db-designer"></property>
+    <changeSet id="v1-01-01" author="${author}">
+    
+ <createTable schemaName="${schemaName}" tableName="PetService">
+	<column name="ServiceId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+ 	<column name="ServiceType" type="INTEGER" />
+   
+     <column name="Price" type="DECIMAL" />
+    
+     <column name="DogSize" type="VARCHAR(250)" />
+    
+     <column name="ServiceAt" type="VARCHAR(250)" />
+    
+     <column name="DurationInDays" type="INTEGER" />
+    
+     <column name="DurationInHours" type="INTEGER" />
+    
+     <column name="OnlineBookingAllowed" type="BOOLEAN" />
+    
+     <column name="AdvPaymentReqd" type="BOOLEAN" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="PetOwner">
+	<column name="OwnerId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="OwnerName" type="VARCHAR(250)" />
+    
+     <column name="ContactPrimary" type="VARCHAR(250)" />
+    
+     <column name="ContactSecondary" type="VARCHAR(250)" />
+    
+  	<column name="Address_AId" type="INTEGER"/>
+	<column name="Address_HouseNumber" type="VARCHAR(250)"/>
+	<column name="Address_SocietyName" type="VARCHAR(250)"/>
+	<column name="Address_Area" type="VARCHAR(250)"/>
+	<column name="Address_Pincode" type="VARCHAR(250)"/>
+	<column name="Address_City" type="VARCHAR(250)"/>
+	<column name="Address_State" type="VARCHAR(250)"/>
+	<column name="Address_Country" type="VARCHAR(250)"/>
+     <column name="Pincode" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="PetCareCenter">
+	<column name="PcId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+  	<column name="Address_AId" type="INTEGER"/>
+	<column name="Address_HouseNumber" type="VARCHAR(250)"/>
+	<column name="Address_SocietyName" type="VARCHAR(250)"/>
+	<column name="Address_Area" type="VARCHAR(250)"/>
+	<column name="Address_Pincode" type="VARCHAR(250)"/>
+	<column name="Address_City" type="VARCHAR(250)"/>
+	<column name="Address_State" type="VARCHAR(250)"/>
+	<column name="Address_Country" type="VARCHAR(250)"/>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+     <column name="BranchName" type="VARCHAR(250)" />
+    
+     <column name="Latitude" type="REAL" />
+    
+     <column name="Longitude" type="REAL" />
+    
+     <column name="Pincode" type="INTEGER" />
+    
+     <column name="IsOperational" type="BOOLEAN" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="BusinessHours">
+  	<column name="BhId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Location" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Document">
+	<column name="DocId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="DocName" type="VARCHAR(250)" />
+    
+     <column name="FileName" type="VARCHAR(250)" />
+    
+     <column name="FileType" type="VARCHAR(250)" />
+    
+     <column name="FileDescription" type="VARCHAR(250)" />
+    
+     <column name="FilePath" type="VARCHAR(250)" />
+    
+ 	<column name="Content" type="BINARY"/>
+	<column name="DocFileType" type="VARCHAR(100)"/>
+	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Pet">
+	<column name="PetId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="PetName" type="VARCHAR(250)" />
+    
+     <column name="Breed" type="VARCHAR(250)" />
+    
+     <column name="AnimalType" type="VARCHAR(250)" />
+    
+     <column name="Gender" type="VARCHAR(250)" />
+    
+     <column name="Color" type="VARCHAR(250)" />
+    
+     <column name="Weight" type="DECIMAL" />
+    
+     <column name="Height" type="DECIMAL" />
+    
+ 	
+</createTable>
+	
+  <createTable schemaName="${schemaName}" tableName="BusinessHoursWorkingHours">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="BhId" type="INTEGER" />
+	<column name="WorkingHours" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="PetCareCenterServices">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="PcId" type="INTEGER" />
+	<column name="ServiceId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="PetOwnerPets">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="OwnerId" type="INTEGER" />
+	<column name="PetId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="PetCareCenterImages">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="PcId" type="INTEGER" />
+	<column name="DocId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="PetCareCenterPets">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="PcId" type="INTEGER" />
+	<column name="PetId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="BusinessHoursHolidays">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="BhId" type="INTEGER" />
+	<column name="Holidays" type="VARCHAR(250)" />
+</createTable>
+
+ 
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="BusinessHoursWorkingHours" baseColumnNames="BhId" constraintName="BusinessHours_BusinessHoursWorkingHours_fk" referencedTableName="BusinessHours"
+                                 	referencedColumnNames="BhId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="PetCareCenterServices" baseTableSchemaName="${schemaName}"  baseColumnNames="PcId" constraintName="PetService_PcId_fk"
+	                                  referencedTableName="PetCareCenter" referencedTableSchemaName="${schemaName}" referencedColumnNames="PcId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="PetCareCenterServices" baseTableSchemaName="${schemaName}"  baseColumnNames="ServiceId" constraintName="PetService_ServiceId_fk"
+	                                  referencedTableName="PetService" referencedTableSchemaName="${schemaName}" referencedColumnNames="ServiceId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="PetOwnerPets" baseTableSchemaName="${schemaName}"  baseColumnNames="OwnerId" constraintName="Pet_OwnerId_fk"
+	                                  referencedTableName="PetOwner" referencedTableSchemaName="${schemaName}" referencedColumnNames="OwnerId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="PetOwnerPets" baseTableSchemaName="${schemaName}"  baseColumnNames="PetId" constraintName="Pet_PetId_fk"
+	                                  referencedTableName="Pet" referencedTableSchemaName="${schemaName}" referencedColumnNames="PetId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="PetCareCenterImages" baseTableSchemaName="${schemaName}"  baseColumnNames="PcId" constraintName="Document_PcId_fk"
+	                                  referencedTableName="PetCareCenter" referencedTableSchemaName="${schemaName}" referencedColumnNames="PcId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="PetCareCenterImages" baseTableSchemaName="${schemaName}"  baseColumnNames="DocId" constraintName="Document_DocId_fk"
+	                                  referencedTableName="Document" referencedTableSchemaName="${schemaName}" referencedColumnNames="DocId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="PetCareCenterPets" baseTableSchemaName="${schemaName}"  baseColumnNames="PcId" constraintName="Pet_PcId_fk"
+	                                  referencedTableName="PetCareCenter" referencedTableSchemaName="${schemaName}" referencedColumnNames="PcId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="PetCareCenterPets" baseTableSchemaName="${schemaName}"  baseColumnNames="PetId" constraintName="Pet_PetId_fk"
+	                                  referencedTableName="Pet" referencedTableSchemaName="${schemaName}" referencedColumnNames="PetId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="BusinessHoursHolidays" baseColumnNames="BhId" constraintName="BusinessHours_BusinessHoursHolidays_fk" referencedTableName="BusinessHours"
+                                 	referencedColumnNames="BhId" referencedTableSchemaName="${schemaName}"/>
+ 
+	
+ 
+ 
+ 
+	<addColumn tableName="PetCareCenter" schemaName="${schemaName}">
+	    <column name="PetCareCenterLogo" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="PetCareCenter" baseColumnNames="PetCareCenterLogo" baseTableSchemaName="${schemaName}" constraintName="PetCareCenter_Logo_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+
+	<addColumn tableName="PetCareCenter" schemaName="${schemaName}">
+	    <column name="PetCareCenterBusinessHours" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="PetCareCenter" baseColumnNames="PetCareCenterBusinessHours" baseTableSchemaName="${schemaName}" constraintName="PetCareCenter_BusinessHours_fk" referencedTableName="BusinessHours"
+	                                 referencedColumnNames="BhId" referencedTableSchemaName="${schemaName}"/>
+ 
+
+ 
+ 
+ 
+	    </changeSet>
+</databaseChangeLog>
